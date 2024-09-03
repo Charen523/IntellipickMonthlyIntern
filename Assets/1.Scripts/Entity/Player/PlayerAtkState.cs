@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class PlayerAtkState : MonoBehaviour
+public class PlayerAtkState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PlayerAtkState(PlayerFSM stateMachine) : base(stateMachine) { }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        fsm.Player.animator.SetTrigger(fsm.Player.AnimData.AtkParamHash);
     }
 }
