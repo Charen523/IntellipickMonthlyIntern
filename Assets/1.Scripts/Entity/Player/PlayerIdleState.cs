@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class PlayerIdleState : MonoBehaviour
+public class PlayerIdleState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PlayerIdleState(PlayerFSM stateMachine) : base(stateMachine) { }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        if (fsm.Player.target == null)
+        {
+            Collider2D newTarget = Physics2D.OverlapArea(fsm.Player.searchPos1.position,
+                                  fsm.Player.searchPos2.position,
+                                  fsm.Player.targetLayer);
+            fsm.Player.target = newTarget;
+        }
     }
 }
