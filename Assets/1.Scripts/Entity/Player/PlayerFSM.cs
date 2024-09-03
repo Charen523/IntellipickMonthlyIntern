@@ -1,16 +1,46 @@
 using UnityEngine;
 
-public class PlayerFSM : MonoBehaviour
+public class PlayerFSM
 {
-    // Start is called before the first frame update
-    void Start()
+    public Player Player { get; set; }
+
+    #region States
+    private IState curState;
+    public PlayerIdleState IdleState { get; set; }
+    public PlayerAtkState AtkState { get; set; }
+    #endregion
+
+    #region Attack Timing
+    private readonly float atkSpd;
+    private float elapseTime;
+    #endregion
+
+    public PlayerFSM(Player player)
     {
+        Player = player;
         
+        IdleState = new PlayerIdleState(this);
+        AtkState = new PlayerAtkState(this);
+
+        atkSpd = player.data.baseAtkSpd;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeState(IState state)
     {
-        
+        curState?.Exit();
+        curState = state;
+        curState?.Enter();
+    }
+
+    public void Update()
+    {
+        if (elapseTime <= 0)
+        {
+            elapseTime = atkSpd;
+            ChangeState(AtkState);
+        }
+        elapseTime -= Time.deltaTime;
+
+        curState?.Update();
     }
 }
