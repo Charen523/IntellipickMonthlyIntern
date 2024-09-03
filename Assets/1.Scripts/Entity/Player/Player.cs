@@ -1,18 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+
+[Serializable]
+public class PlayerAnimData
+{
+    [SerializeField] private string atkParam = "IsAtk";
+    public int AtkParamHash { get; private set; }
+
+    public void Initialize()
+    {
+        AtkParamHash = Animator.StringToHash(atkParam);
+    }
+}
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerAnimData AnimData { get; private set; }
+    public PlayerData data { get; private set; }
+
+    public Animator animator;
+    private PlayerFSM fsm;
+
+    public LayerMask targetLayer;
+    public Collider2D target;
+    public Transform searchPos1;
+    public Transform searchPos2;
+
+    private void Awake()
     {
-        
+        AnimData.Initialize();
+        fsm = new PlayerFSM(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        fsm.Update();
+    }
+
+    public void ArrowStart()
+    {
+        //TODO: Arrow Active Logic. Argument: Damage.
+    }
+
+    public void AtkAnimEnd()
+    {
+        fsm.ChangeState(fsm.IdleState);
     }
 }
