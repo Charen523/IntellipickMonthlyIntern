@@ -23,6 +23,7 @@ public class PlayerFSM
         AtkState = new PlayerAtkState(this);
 
         atkSpd = player.data.baseAtkSpd;
+        ChangeState(IdleState);
     }
 
     public void ChangeState(IState state)
@@ -34,13 +35,16 @@ public class PlayerFSM
 
     public void Update()
     {
-        if (elapseTime <= 0 && Player.target != null)
-        {
-            elapseTime = atkSpd;
-            ChangeState(AtkState);
-        }
-        elapseTime -= Time.deltaTime;
-
         curState?.Update();
+
+        if (Player.target != null)
+        {
+            if (elapseTime <= 0)
+            {
+                elapseTime = atkSpd;
+                ChangeState(AtkState);
+            }
+            elapseTime -= Time.deltaTime;
+        }
     }
 }

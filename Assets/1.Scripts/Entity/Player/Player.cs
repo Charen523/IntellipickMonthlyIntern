@@ -38,11 +38,6 @@ public class Player : MonoBehaviour
         GameManager.Instance.OnMonsterDead += ResetTarget;
     }
 
-    private void Start()
-    {
-        fsm.ChangeState(fsm.IdleState);
-    }
-
     private void Update()
     {
         fsm.Update();
@@ -55,8 +50,11 @@ public class Player : MonoBehaviour
 
     public void ArrowStart()
     {
-        Arrow arrow = ObjectPool.Instance.Get<Arrow>(GameManager.Instance.arrowTag);
-        arrow.GetAttackSign(arrowPos.position, data.baseDmg);
+        if (target != null)
+        {
+            Arrow arrow = ObjectPool.Instance.Get<Arrow>(GameManager.Instance.arrowTag);
+            arrow.GetAttackSign(arrowPos.position, data.baseDmg);
+        }
     }
 
     public void AtkAnimEnd()

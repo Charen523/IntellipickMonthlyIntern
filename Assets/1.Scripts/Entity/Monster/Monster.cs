@@ -87,6 +87,7 @@ public class Monster : MonoBehaviour, IPointerClickHandler
 
         if (curHealth == 0)
         {
+            rb.velocity = Vector3.zero;
             anim.SetTrigger(AnimData.DieParamHash);
             col.enabled = false;
         }
