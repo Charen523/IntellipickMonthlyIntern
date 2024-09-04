@@ -23,9 +23,12 @@ public class Arrow : MonoBehaviour
 
     public void GetAttackSign(Vector3 start, int damage)
     {
-        isShoot = true;
+        transform.position = start;
         rb.position = start;
         endPos = new Vector3(10, start.y, 0);
+        arrowDmg = damage;
+
+        isShoot = true;
     }
 
     private void ResetArrow()
