@@ -16,6 +16,12 @@ public class ObjectPool : Singleton<ObjectPool>
     private Dictionary<string, Queue<MonoBehaviour>> poolDictionary = new Dictionary<string, Queue<MonoBehaviour>>();
     private Transform objectPoolParent;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        GameManager.Instance.OnMonsterDead += ClearArrowPool;
+    }
+
     private void Start()
     {
         objectPoolParent = new GameObject("ObjectPool").transform;
@@ -58,6 +64,17 @@ public class ObjectPool : Singleton<ObjectPool>
 
         obj.gameObject.SetActive(true);
         return (T)obj;
+    }
+
+    private void ClearArrowPool()
+    {
+        foreach (var obj in poolDictionary[GameManager.Instance.arrowTag])
+        {
+            if (obj.gameObject.activeSelf)
+            {
+                obj.gameObject.SetActive(false);
+            }
+        }
     }
 
     private void SetMonster(Monster monster, string key) 
