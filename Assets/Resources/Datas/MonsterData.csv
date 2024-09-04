@@ -1,6 +1,6 @@
 id,Name,Grade,Speed,Health
-Mon1,Skeleton,일반,0.5,50
-Mon2,EliteOrc,레어,1,100
-Mon3,Wizard,매직,0.8,200
-Mon4,Werebear,전설,2,500
-Mon5,OrcRider,영웅,2.5,1000
+Mon1,Skeleton,Common,0.5,50
+Mon2,EliteOrc,Rare,1,100
+Mon3,Wizard,Magic,0.8,200
+Mon4,Werebear,Legend,2,500
+Mon5,OrcRider,Hero,2.5,1000
