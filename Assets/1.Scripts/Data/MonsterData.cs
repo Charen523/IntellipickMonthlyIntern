@@ -8,7 +8,7 @@ public interface IData
 [Serializable]
 public class MonsterData : IData
 {
-    public int id;
+    public string id;
     public string Name;
     public string Grade;
     public float Speed;

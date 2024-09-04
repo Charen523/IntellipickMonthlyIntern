@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public Animator animator;
     private PlayerFSM fsm;
 
+    public Transform arrowPos;
+
     public LayerMask targetLayer;
     public Collider2D target;
     public Transform searchPos1;
@@ -39,7 +41,8 @@ public class Player : MonoBehaviour
 
     public void ArrowStart()
     {
-        //TODO: Arrow Active Logic. Argument: Damage.
+        Arrow arrow = ObjectPool.Instance.Get<Arrow>(GameManager.Instance.arrowTag);
+        arrow.GetAttackSign(arrowPos.position, data.baseDmg);
     }
 
     public void AtkAnimEnd()
