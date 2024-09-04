@@ -5,7 +5,7 @@ public class PlayerIdleState : PlayerBaseState
 {
     public PlayerIdleState(PlayerFSM stateMachine) : base(stateMachine) { }
 
-    public override void Enter()
+    public override void Update()
     {
         if (fsm.Player.target == null)
         {

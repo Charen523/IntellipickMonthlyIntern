@@ -34,11 +34,23 @@ public class Player : MonoBehaviour
         data = new PlayerData();
         AnimData.Initialize();
         fsm = new PlayerFSM(this);
+
+        GameManager.Instance.OnMonsterDead += ResetTarget;
+    }
+
+    private void Start()
+    {
+        fsm.ChangeState(fsm.IdleState);
     }
 
     private void Update()
     {
         fsm.Update();
+    }
+
+    private void ResetTarget()
+    {
+        target = null;
     }
 
     public void ArrowStart()

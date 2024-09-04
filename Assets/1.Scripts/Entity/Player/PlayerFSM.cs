@@ -34,7 +34,7 @@ public class PlayerFSM
 
     public void Update()
     {
-        if (elapseTime <= 0)
+        if (elapseTime <= 0 && Player.target != null)
         {
             elapseTime = atkSpd;
             ChangeState(AtkState);
