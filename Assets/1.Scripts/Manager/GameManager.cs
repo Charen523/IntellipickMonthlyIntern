@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public event Action MonsterDead;
+    public event Action OnMonsterDead;
 
     public readonly string arrowTag = "Arrow";
     public readonly string monsterTag = "Monster";
@@ -13,17 +13,16 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        MonsterDead += SpawnMonster;
         SpawnMonster();
     }
 
-    private void SpawnMonster()
+    public void SpawnMonster()
     {
         curMonster = ObjectPool.Instance.Get<Monster>(monsterTag);
     }
 
-    public void OnMonsterDead()
+    public void MonsterDeadEvent()
     {
-        MonsterDead?.Invoke();
+        OnMonsterDead?.Invoke();
     }
 }
