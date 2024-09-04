@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,11 +18,14 @@ public class MonsterAnimData
 public class Monster : MonoBehaviour, IPointerClickHandler
 {
     public MonsterAnimData AnimData { get; private set; }
-    public MonsterData data { get; private set; }
+    public MonsterData data;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator anim;
     [SerializeField] private Collider2D col;
+    [SerializeField] private LayerMask groundLayer;
+
+    private bool canMove = false;
 
     [SerializeField] private Transform hpBar;
     public int curHealth;
@@ -38,12 +42,21 @@ public class Monster : MonoBehaviour, IPointerClickHandler
         {
             curHealth = data.Health;
             hpBar.localScale = new Vector3(1, 0.06f, 1);
+
+            Vector3 newPosition = transform.position;
+            newPosition.x = 10;
+            transform.position = newPosition;
+
+            canMove = false;
         }
     }
 
     private void Update()
     {
-        Move(data.Speed);
+        if (canMove)
+        {
+            Move(data.Speed);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -67,12 +80,13 @@ public class Monster : MonoBehaviour, IPointerClickHandler
 
     public void OnDamage(int damage)
     {
-        curHealth = Mathf.Max(0, damage);
-        hpBar.localScale = new Vector3(curHealth / data.Health, 0.06f, 1);
+        curHealth = Mathf.Max(0, curHealth - damage);
+        float hp = (float)curHealth / data.Health;
+
+        hpBar.localScale = new Vector3(hp, 0.06f, 1);
 
         if (curHealth == 0)
         {
-            GameManager.Instance.OnMonsterDead();
             anim.SetTrigger(AnimData.DieParamHash);
             col.enabled = false;
         }
@@ -81,6 +95,16 @@ public class Monster : MonoBehaviour, IPointerClickHandler
     public void Die()
     {
         col.enabled = true;
+        GameManager.Instance.MonsterDeadEvent();
+        GameManager.Instance.SpawnMonster();
         gameObject.SetActive(false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & groundLayer) != 0)
+        {
+            canMove = true;
+        }
     }
 }
