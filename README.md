@@ -1,5 +1,9 @@
 # IntellipickMonthlyIntern
- 
+
+### 시연 영상
+https://github.com/user-attachments/assets/6e9ee95e-1701-4b38-8e69-056173104714
+
+
 ### 프로젝트 체크리스트
 
 1. **횡스크롤 방식의 간단한 전투 구현**
