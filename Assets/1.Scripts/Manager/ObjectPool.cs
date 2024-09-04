@@ -36,6 +36,11 @@ public class ObjectPool : Singleton<ObjectPool>
         {
             GameObject obj = Instantiate(pool.prefab, tagParent);
             MonoBehaviour objInstance = obj.GetComponent<MonoBehaviour>();
+            if (pool.tag == GameManager.Instance.monsterTag)
+            {
+                string monsterKey = "Mon" + (i + 1);
+                SetMonster((Monster)objInstance, monsterKey);
+            }
             objInstance.gameObject.SetActive(false);
             objectPool.Enqueue(objInstance);
         }
@@ -53,5 +58,11 @@ public class ObjectPool : Singleton<ObjectPool>
 
         obj.gameObject.SetActive(true);
         return (T)obj;
+    }
+
+    private void SetMonster(Monster monster, string key) 
+    {
+        RuntimeAnimatorController controller = DataManager.Instance.LoadAsset<RuntimeAnimatorController>(key, eResourceType.Animators);
+        monster.SetMonsterData(key, controller);
     }
 }
