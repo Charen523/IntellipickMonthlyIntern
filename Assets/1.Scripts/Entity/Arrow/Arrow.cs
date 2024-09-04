@@ -13,7 +13,7 @@ public class Arrow : MonoBehaviour
     {
         if (isShoot)
         {
-            rb.velocity = Vector2.right;
+            rb.velocity = Vector2.right * 10;
             if (transform.position == endPos)
             {
                 ResetArrow();

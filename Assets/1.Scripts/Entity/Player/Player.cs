@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        AnimData = new PlayerAnimData();
+        data = new PlayerData();
         AnimData.Initialize();
         fsm = new PlayerFSM(this);
     }

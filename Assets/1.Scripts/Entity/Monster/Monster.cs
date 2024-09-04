@@ -28,6 +28,7 @@ public class Monster : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
+        AnimData = new MonsterAnimData();
         AnimData.Initialize();
     }
 
