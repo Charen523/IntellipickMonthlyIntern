@@ -3220,6 +3220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curMonster: {fileID: 0}
+  MonsterInfo: {fileID: 1366901985}
 --- !u!4 &998262120
 Transform:
   m_ObjectHideFlags: 0
@@ -3247,7 +3248,7 @@ GameObject:
   - component: {fileID: 1030490500}
   - component: {fileID: 1030490499}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: InfoTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3325,8 +3326,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1366901982}
   - component: {fileID: 1366901984}
+  - component: {fileID: 1366901985}
   m_Layer: 5
-  m_Name: InfoPanel
+  m_Name: MonsterInfoPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3360,6 +3362,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366901981}
   m_CullTransparentMesh: 1
+--- !u!114 &1366901985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366901981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1cdb9a525bfe7418ddcbeed69b15f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoTxt: {fileID: 1030490499}
 --- !u!1 &1414335703
 GameObject:
   m_ObjectHideFlags: 0

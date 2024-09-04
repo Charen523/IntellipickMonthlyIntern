@@ -26,8 +26,6 @@ public class Monster : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Transform hpBar;
     public int curHealth;
 
-    [SerializeField] private GameObject InfoPanel;
-
     private void Awake()
     {
         AnimData.Initialize();
@@ -49,7 +47,9 @@ public class Monster : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        InfoPanel.SetActive(true);
+        MonsterInfoPopup popup = GameManager.Instance.MonsterInfo;
+        popup.gameObject.SetActive(true);
+        popup.SetInfoTxt(data);
     }
 
     public void SetMonsterData(string monsterKey, RuntimeAnimatorController animator)

@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MonsterInfo : MonoBehaviour
+public class MonsterInfoPopup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Text infoTxt;
+
+    private void Start()
     {
-        
+        gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetInfoTxt(MonsterData data)
     {
-        
+        string text = "";
+        text += "이름: " + data.Name + "\n";
+        text += "등급: " + data.Grade + "\n";
+        text += "속도: " + data.Speed + "\n";
+        text += "체력: " + data.Health;
+
+        infoTxt.text = text;
     }
 }

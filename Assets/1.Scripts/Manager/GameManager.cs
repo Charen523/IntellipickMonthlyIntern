@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     public readonly string monsterTag = "Monster";
 
     public Monster curMonster;
-    public GameObject MonsterInfo;
+    public MonsterInfoPopup MonsterInfo;
 
     private void Start()
     {
