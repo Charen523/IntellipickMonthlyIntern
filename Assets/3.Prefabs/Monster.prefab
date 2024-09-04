@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8506362077724636026}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5512359870169632388}
   - component: {fileID: 6952226993241852656}
   - component: {fileID: 1760281540760193883}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -175,9 +175,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38dd0ed68799f945a75df4fcfb80845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    id: 
+    Name: 
+    Grade: 
+    Speed: 0
+    Health: 0
   rb: {fileID: 5512359870169632388}
   anim: {fileID: 6952226993241852656}
   col: {fileID: 6341320962722491637}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   hpBar: {fileID: 3094739298054263503}
   curHealth: 1
 --- !u!1 &5788802702377029044
@@ -190,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 816689753314821267}
   - component: {fileID: 1227524314371443172}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +284,7 @@ GameObject:
   - component: {fileID: 2768342575379601747}
   - component: {fileID: 5057130632664829447}
   - component: {fileID: 4628732856106678295}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3094739298054263503}
   - component: {fileID: 4303649504935808119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FillBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
